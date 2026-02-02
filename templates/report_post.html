@@ -1,0 +1,31 @@
+{% extends 'base.html' %} 
+{% block content %} 
+<div class="container mx-auto px-4 mt-8 max-w-xl"> 
+<h1 class="text-2xl font-bold mb-4">Şikayət Et</h1> 
+<div class="bg-gray-100 p-4 mb-4 rounded"> 
+<p><strong>Post:</strong> {{ post.title }}</p> 
+</div> 
+<form method="POST" class="bg-white p-4 rounded border"> 
+{% csrf_token %} 
+<input type="text" name="reporter_name" placeholder="Adınız" class="w- 
+full border p-2 mb-3 rounded" required> 
+<input type="email" name="reporter_email" placeholder="Email" class="w- 
+full border p-2 mb-3 rounded" required> 
+<select name="reason" class="w-full border p-2 mb-3 rounded" required> 
+<option value="">Səbəb seçin</option> 
+<option value="inappropriate">Uyğun olmayan</option> 
+<option value="spam">Spam</option> 
+<option value="offensive">Təhqiredici</option> 
+<option value="misinformation">Yanlış məlumat</option> 
+<option value="copyright">Müəlliflik hüququ</option> 
+<option value="other">Digər</option> 
+</select> 
+<textarea name="description" placeholder="Təfərqatlar" class="w-full 
+border p-2 mb-3 rounded" rows="2"></textarea> 
+<button type="submit" class="px-4 py-2 bg-red-600 text-white 
+rounded">Göndər</button> 
+<a href="{% url 'post' post.slug %}" class="px-4 py-2 bg-gray-400 text- 
+white rounded">Geri</a> 
+</form> 
+</div> 
+{% endblock %} 
